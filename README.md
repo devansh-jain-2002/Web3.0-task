@@ -4,7 +4,8 @@
 The program is written in C++.
 I have made a parent class named **Person** having ID (unique for every person) , Name , DOB(Date of Birth) as attributes and a get_name() method.
 
-The **Borrower** class and **Lender** Class are inherited from **Person** class. 
+The **Borrower** class and **Lender** Class are inherited from **Person** class.
+
 ---
 ### About the Borrower class
 
