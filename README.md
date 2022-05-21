@@ -31,3 +31,13 @@ The function transac_history() prints the transaction history till date.
 
 ---
 My code is written in C++ and you can easily run it on your machine with the help of g++ compiler.
+
+---
+The loaning system I have made is centralized as I have access to the user data and transaction history.
+
+Demerits of a centralized system:
+- I have access to the user data , therefore I can modify it to fulfil my own means.
+- The whole loaning system depends on the central program , if that fails to work , the whole system will break down.
+- If by any chance , an external entity breaks into my system , it can modify or delete the program files.
+
+
