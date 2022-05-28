@@ -3,7 +3,7 @@
 #include <string>
 using namespace std;
 const int default_credit = 100000; // maximum credit one can have
-const int max_debt = 50000;        // maximum debt one can have
+const int max_debt = 100000;        // maximum debt one can have
 static int next_ID = 0;            // Used to generate new Id for a person every time
 class Person                       // Base Class, because every Borrower or Lender is a person.
 {
