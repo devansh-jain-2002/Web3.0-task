@@ -1,6 +1,8 @@
 # Description
 I have imported the hashlib library for the sha-256 encryption function
+
 Using .encode() I have converted the string + appended part to binary
+
 Using .hexdigest() I have converted the output of the hash function to a hexadecimal string
 
 ### Example
