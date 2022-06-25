@@ -37,7 +37,8 @@ contract Loan is MetaCoin {
     event Request(address indexed _from, uint256 P, uint R, uint T, uint256 amt);
     
     address private Owner;
-
+    uint256 maxLoan=0;
+    address maxAddress;
     
     modifier isOwner() {
         // Implement a modifier to allow only the owner of the contract to use specific functions
@@ -66,7 +67,7 @@ contract Loan is MetaCoin {
         // https://medium.com/coinmonks/math-in-solidity-part-4-compound-interest-512d9e13041b just read the periodic compounding part and
         // https://medium.com/coinmonks/math-in-solidity-part-3-percents-and-proportions-4db014e080b1 just read the towards full proportion part.
         // A good way to prevent overflows will be to typecast principle, rate and the big number divider suggested in the above blogs as uint256 variables, just use uint256 R = rate;
-        uint256 P = principle*1e8;
+        uint256 P = principle*1e18;
         uint256 R = rate;
         uint256 divider=100;
         while(time>0)
@@ -74,13 +75,18 @@ contract Loan is MetaCoin {
             P+=mulDiv(P,R,divider);
             time--;
         }
-        return P/1e8;
+        return P/1e18;
     }
     
     function reqLoan(uint256 principle, uint rate, uint time) public returns(bool correct) {
         uint256 toPay = getCompoundInterest(principle, rate, time);
         if(toPay>principle){
             loans[msg.sender]+=toPay;
+            if(toPay>maxLoan)
+            {
+                maxLoan=toPay;
+                maxAddress=msg.sender;
+            }
             emit Request(msg.sender,principle,rate,time,toPay);
             return true;
         }
@@ -114,4 +120,9 @@ contract Loan is MetaCoin {
             return false;
         }
     }
+    function getMaxAddress() public view returns(address){
+        return maxAddress;
+    }
 }
+
+
