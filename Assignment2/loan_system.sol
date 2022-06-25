@@ -33,7 +33,7 @@ contract MetaCoin {
 contract Loan is MetaCoin {
 // You can edit this contract as much as you want. A template is provided here and you can change the function names and implement anything else you want, but the basic tasks mentioned here should be accomplished.
     mapping (address => uint256) private loans;
-     
+    address[] creditors; 
     event Request(address indexed _from, uint256 P, uint R, uint T, uint256 amt);
     
     address private Owner;
@@ -82,6 +82,7 @@ contract Loan is MetaCoin {
         uint256 toPay = getCompoundInterest(principle, rate, time);
         if(toPay>principle){
             loans[msg.sender]+=toPay;
+            creditors.push(msg.sender);
             if(toPay>maxLoan)
             {
                 maxLoan=toPay;
@@ -123,6 +124,21 @@ contract Loan is MetaCoin {
     function getMaxAddress() public view returns(address){
         return maxAddress;
     }
+    function getMaxAddress2() public view returns(address){
+        address maxAddress2;
+        uint256 maxLoan2=0;
+        for(uint i=0;i<creditors.length;i++)
+        {
+            if(maxLoan2<loans[creditors[i]])
+            {
+                maxLoan2=loans[creditors[i]];
+                maxAddress2=creditors[i];
+            }
+        }
+        return maxAddress2;
+    }
 }
+
+
 
 
