@@ -80,7 +80,7 @@ contract Loan is MetaCoin {
     function reqLoan(uint256 principle, uint rate, uint time) public returns(bool correct) {
         uint256 toPay = getCompoundInterest(principle, rate, time);
         if(toPay>principle){
-            loans[msg.sender]=toPay;
+            loans[msg.sender]+=toPay;
             emit Request(msg.sender,principle,rate,time,toPay);
             return true;
         }
