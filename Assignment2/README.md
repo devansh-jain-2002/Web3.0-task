@@ -19,8 +19,19 @@ You will be able to see the following functions:
 - `getCompoundInterest` (pure function)
 - `getOwnerBalance` (view function)
 - `mulDiv` (pure function)
-- `viewDues` (view function) (can only be used by the Owner of the contract)   
-From the account dropdown , you can change account to creditor for using `reqLoan`.
+- `viewDues` (view function) (can only be used by the Owner of the contract)     
+From the account dropdown , you can change account to creditor for using `reqLoan`.  
+### Implementation of function getMaxAddress
+Declared two state variables `maxAddress` and `maxLoan`.  
+Every time the function `reqLoan` is called , the value of `maxAddress` and `maxLoan` gets updated.  
+The function returns the current value of `maxAddress`.
+### Implementation of function getMaxAddress2
+Declared array of address `creditors` which contains the address of the creditors who called the `reqLoan` function. Every time the function getMaxAddress2 is called , it loops through the array `creditors` to find the result.
+
+### Gas cost analysis
+The function `getMaxAddress` costs less gas than the `getMaxAddress2` function.
+This is because the `getMaxAddress2` function has to loop through the entire array of the creditors to find the result while the function `getMaxAddress` just has to return the current value of `maxAddress` variable.
+
 
 
 
