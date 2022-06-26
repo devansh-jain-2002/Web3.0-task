@@ -2,7 +2,7 @@
 The contract `MetaCoin` is already given in the template and the `Loan` Contract is derived from it.  
 Used the `mulDiv` function from the tutorial given in the resources.    
 The function `getCompoundInterest` calculates the compound interest from Principal, Rate and Time , and uses the `mulDiv` function to prevent overflow.    
-The Principal is first multiplied by 1e8 and then the final amount to pay is divided by 1e8 to improve precision. 
+The Principal is first multiplied by 1e18 and then the final amount to pay is divided by 1e18 to improve precision. 
 The function `reqLoan` assign in the `loans` mapping , the due amount of the creditor who called the function.
 ## How to use the contract 
 In the Remix IDE ,  
